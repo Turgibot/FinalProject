@@ -23,7 +23,7 @@ namespace CSA_Project.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("final_project", throwIfV1Schema: false)
         {
         }
 
