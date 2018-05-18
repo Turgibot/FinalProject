@@ -250,3 +250,4 @@ yachts/Scripts/angular/*.js
 yachts/Content/*.min*
 _.vs/config/applicationhost.config
 CSA_Project/CSA_Project/Web.config
+CSA_Project/CSA_Project/Models/IdentityModels.cs
