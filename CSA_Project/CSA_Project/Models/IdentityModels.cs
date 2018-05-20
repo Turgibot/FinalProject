@@ -19,8 +19,11 @@ namespace CSA_Project.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
+            userIdentity.AddClaim(new Claim("FullName", this.FirstName+" " +this.LastName));
             return userIdentity;
         }
+
+       
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -29,6 +32,8 @@ namespace CSA_Project.Models
             : base("final_project", throwIfV1Schema: false)
         {
         }
+        //link all models to database here
+        public DbSet<SettingsViewModels> Settings { get; set; }
 
         public static ApplicationDbContext Create()
         {
