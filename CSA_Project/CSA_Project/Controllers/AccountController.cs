@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CSA_Project.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CSA_Project.Controllers
 {
@@ -93,7 +94,18 @@ namespace CSA_Project.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var user = context.Users.Where(b => b.Email == model.Email).FirstOrDefault();
+                    var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                    var s = UserManager.GetRoles(user.Id);
+                    if (s[0].ToString() == "Admin")
+                    {
+                        return RedirectToAction("Index","Settings");
+                    }
+                    else
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
+                    
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
