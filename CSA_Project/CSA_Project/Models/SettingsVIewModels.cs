@@ -16,6 +16,10 @@ namespace CSA_Project.Models
         [DisplayName("Number of people allowed")]
         public int MaxPeopleAllowed { get; set; }
 
+        public SettingsViewModels()
+        {
+            this.MaxPeopleAllowed = 5;
+        }
     }
     
 

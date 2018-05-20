@@ -1,8 +1,32 @@
-﻿@model CSA_Project.Models.SettingsViewModels
+﻿@model IEnumerable<CSA_Project.Models.SettingsViewModels>
 
 @{
     ViewBag.Title = "Index";
+    
+        
 }
 
-<h2>Settings</h2>
+<h2>Index</h2>
 
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxPeopleAllowed)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxPeopleAllowed)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
