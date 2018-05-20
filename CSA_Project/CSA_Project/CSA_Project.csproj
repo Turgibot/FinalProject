@@ -241,12 +241,21 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201805161544089_initial_create.cs" />
     <Compile Include="Migrations\201805161544089_initial_create.Designer.cs">
       <DependentUpon>201805161544089_initial_create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805200846117_Registration_page.cs" />
+    <Compile Include="Migrations\201805200846117_Registration_page.Designer.cs">
+      <DependentUpon>201805200846117_Registration_page.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805200937081_Registration_page_v2.cs" />
+    <Compile Include="Migrations\201805200937081_Registration_page_v2.Designer.cs">
+      <DependentUpon>201805200937081_Registration_page_v2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -346,6 +355,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -366,6 +376,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805161544089_initial_create.resx">
       <DependentUpon>201805161544089_initial_create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805200846117_Registration_page.resx">
+      <DependentUpon>201805200846117_Registration_page.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805200937081_Registration_page_v2.resx">
+      <DependentUpon>201805200937081_Registration_page_v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

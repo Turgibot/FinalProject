@@ -41,8 +41,12 @@ namespace CSA_Project
                 var user = new ApplicationUser();
                 user.UserName = "Guy";
                 user.Email = "turgibot@gmail.com";
+                user.EmailConfirmed = true;
+                user.FirstName = "Guy";
+                user.LastName = "Tordjman";
+                user.PhoneNumber = "0537203788";
 
-                string userPWD = "12345678";
+                string userPWD = "Q@w3e4";
 
                 var chkUser = UserManager.Create(user, userPWD);
 

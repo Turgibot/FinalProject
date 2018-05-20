@@ -153,7 +153,8 @@ namespace CSA_Project.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.ToList(), "Name", "Name");
+            var rollsList = context.Roles.ToList();
+            ViewBag.Name = new SelectList(rollsList, "Name", "Name","Viewer");
             return View();
         }
 
@@ -166,7 +167,7 @@ namespace CSA_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.FirstName };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, PhoneNumber = model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -177,6 +178,7 @@ namespace CSA_Project.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles); 
                     ViewBag.Name = new SelectList(context.Roles .ToList(), "Name", "Name");
                     return RedirectToAction("Index", "Home");
                 }
@@ -184,6 +186,8 @@ namespace CSA_Project.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            var rollsList = context.Roles.ToList();
+            ViewBag.Name = new SelectList(rollsList, "Name", "Name", "Viewer");
             return View(model);
         }
 
@@ -382,7 +386,7 @@ namespace CSA_Project.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, FirstName = model.Hometown };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

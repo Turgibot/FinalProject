@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using CSA_Project.Models;
+using System.Web.Mvc;
 
 namespace CSA_Project
 {
@@ -85,6 +86,11 @@ namespace CSA_Project
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
+        }
+
+        internal Task AddToRoleAsync(string id, IEnumerable<SelectListItem> userRoles)
+        {
+            throw new NotImplementedException();
         }
     }
 
