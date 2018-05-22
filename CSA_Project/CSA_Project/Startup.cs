@@ -16,10 +16,10 @@ namespace CSA_Project
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            CreateRolesandUsers();
+            CreateRolesandUsersAsync();
         }
 
-        private void CreateRolesandUsers()
+        private async void CreateRolesandUsersAsync()
         {
             ApplicationDbContext context = new ApplicationDbContext();
 
@@ -38,27 +38,25 @@ namespace CSA_Project
 
                 //Here we create a Admin super user who will maintain the website                  
 
-                var user = new ApplicationUser();
-                user.UserName = "Guy";
-                user.Email = "turgibot@gmail.com";
-                user.EmailConfirmed = true;
-                user.FirstName = "Guy";
-                user.LastName = "Tordjman";
-                user.PhoneNumber = "0537203788";
+                //var user = new ApplicationUser();
+                //user.UserName = "Guy";
+                //user.Email = "turgibot@gmail.com";
+                //user.EmailConfirmed = true;
+                //user.FirstName = "Guy";
+                //user.LastName = "Tordjman";
+                //user.PhoneNumber = "0537203788";
 
-                string userPWD = "Q@w3e4";
+                //string userPWD = "Q@w3e4";
 
-                var chkUser = UserManager.Create(user, userPWD);
+                //var chkUser = UserManager.Create(user, userPWD);
 
-                //Add default User to Role Admin   
-                if (chkUser.Succeeded)
-                {
-                    var result1 = UserManager.AddToRole(user.Id, "Admin");
+                ////Add default User to Role Admin   
+                //if (chkUser.Succeeded)
+                //{
+                //    var result1 = UserManager.AddToRole(user.Id, "Admin");
 
-                }
+                //}
             }
-
-            
 
             // creating Creating Employee role    
             if (!roleManager.RoleExists("Viewer"))
@@ -66,6 +64,19 @@ namespace CSA_Project
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Viewer";
                 roleManager.Create(role);
+
+            }
+            //create a default alert
+            if (context.Alerts.Count() == 0)
+            {
+                var alert = new AlertsModel();
+                alert.AlertType = "OK";
+                alert.Code = 200;
+                alert.Message = "OK";
+                var setting = new SettingsViewModels();
+                setting.Alerts.Add(alert);
+                context.Settings.Add(setting);
+                await context.SaveChangesAsync();
 
             }
         }

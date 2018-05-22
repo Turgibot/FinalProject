@@ -19,7 +19,7 @@ namespace CSA_Project.Controllers
         public async Task<ActionResult> Index()
         {
             if (!User.IsInRole("Admin"))
-               return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index","Home");
             return View(await db.Settings.ToListAsync());
         }
 
@@ -49,7 +49,7 @@ namespace CSA_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,MaxPeopleAllowed")] SettingsViewModels settingsViewModels)
+        public async Task<ActionResult> Create([Bind(Include = "Id,MaxPeopleAllowed")] SettingsViewModels settingsViewModels)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace CSA_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,MaxPeopleAllowed")] SettingsViewModels settingsViewModels)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,MaxPeopleAllowed")] SettingsViewModels settingsViewModels)
         {
             if (ModelState.IsValid)
             {

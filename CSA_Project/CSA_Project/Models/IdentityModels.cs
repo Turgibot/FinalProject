@@ -12,7 +12,7 @@ namespace CSA_Project.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         
-
+        
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -34,6 +34,13 @@ namespace CSA_Project.Models
         }
         //link all models to database here
         public DbSet<SettingsViewModels> Settings { get; set; }
+        public DbSet<MainViewerViewModels> Viewer { get; set; }
+        public DbSet<AlertsModel> Alerts { get; set; }
+
+
+        
+
+
 
         public static ApplicationDbContext Create()
         {
