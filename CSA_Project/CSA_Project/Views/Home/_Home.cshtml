@@ -4,16 +4,37 @@
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
-<canvas id="video-canvas"></canvas>
+@*<canvas id="video-canvas"></canvas>
 <script type="text/javascript" src="~/Scripts/jsmpeg.min.js"></script>
 <script type="text/javascript">
 		var canvas = document.getElementById('video-canvas');
-		var url = 'ws://192.168.13.157:8082/';
+    var url = 'http://192.168.1.10:8088/stream_viewer?topic=/camera/color/image_raw';
     var player = new JSMpeg.Player(url, { canvas: canvas });
     player.play();
+</script>*@
+
+<img id="inference" src="http://192.168.1.10:8088/stream?topic=/camera/color/image_raw"/>
+<script>
+    var newImage = new Image();
+    newImage.src = "http://192.168.1.10:8088/snapshot?topic=/camera/color/image_raw";
+    var inference = document.getElementById('inference');
+    //setInterval(function () {
+    //    inference.src = "http://192.168.1.10:8088/snapshot?topic=/camera/color/image_raw";
+
+    //},33)
+    //inference.src = "http://192.168.1.10:8088/snapshot?topic=/camera/color/image_raw";
+
+    function updateImage() {
+        if (newImage.complete) {
+            document.getElementById("inference").src = newImage.src;
+            newImage = new Image();
+            newImage.src = "http://192.168.1.10:8088/stream?topic=/camera/color/image_raw";
+        }
+
+        setTimeout(updateImage, 33);
+    }
+   // updateImage();
 </script>
-
-
 <div class="row">
     <div class="col-md-4">
         <h2>Your information</h2>
