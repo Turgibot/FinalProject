@@ -352,7 +352,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Python\Inference.py" />
+    <Content Include="Python\euclid.py" />
+    <Content Include="Python\streamer.py" />
+    <Content Include="Python\templates\index.html" />
     <Content Include="Scripts\app\_run.js" />
     <Content Include="Scripts\app\app.datamodel.js" />
     <Content Include="Scripts\app\app.viewmodel.js" />
