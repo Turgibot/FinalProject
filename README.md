@@ -35,6 +35,7 @@ Instructor: Dr. Reuven Cohen
   <li>MS SQL Studio</li>
   <li>TensorFlow 1.4 or later</li>
 </ol>
+
 ### Environment Preparation:
 <p>
 	After installing all the required software you sould set your global variables in the Global class.
