@@ -34,7 +34,14 @@ Instructor: Dr. Reuven Cohen
   <li>ffmpeg</li>
   <li>MS SQL Studio</li>
   <li>TensorFlow 1.4 or later</li>
+  <li>Neural Network - we used tiny yolo>
 </ol>
+
+
+We acknoledge and thankfull to the yolo team for making the 
+[yolo network](https://pjreddie.com/darknet/yolo)
+available to the world.
+
 
 ### Environment Preparation:
 <p>
