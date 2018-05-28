@@ -50,7 +50,7 @@ namespace CSA_Project.Controllers
         public string run_cmd(string cmd, string args)
         {
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = @"C:\Python27\python.exe"; //"PATH_TO_PYTHON_EXE";
+            start.FileName = @"C:\Program Files\Python35\python.exe"; //"PATH_TO_PYTHON_EXE";
             start.Arguments = string.Format("\"{0}\" \"{1}\"", cmd, args);
             start.UseShellExecute = false;// Do not use OS shell
             start.CreateNoWindow = true; // We don't need new window
