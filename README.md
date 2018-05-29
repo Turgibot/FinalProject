@@ -45,7 +45,8 @@ available to the world.
 
 ### Environment Preparation:
 <p>
-	After installing all the required software you sould set your global variables in the Global class.
+	After installing all the required software you should set your global variables in the Global class.
+	On Euclid stop all OOBE services using provided scripts 
 
 </p>
 
