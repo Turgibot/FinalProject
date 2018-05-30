@@ -15,7 +15,32 @@ namespace CSA_Project.Models
         public long Id { get; set; }
         [DisplayName("Number of people allowed")]
         public int MaxPeopleAllowed { get; set; }
-        
+
+        [DisplayName("Euclid IP")]
+        public string EuclidIP { get; set; }
+
+        [DisplayName("Euclid MAC")]
+        public string EuclidMAC { get; set; }
+
+        [DisplayName("Euclid Port number")]
+        public string EuclidPort { get; set; }
+
+        [DisplayName("Euclid Camera Topic")]
+        public string Topic { get; set; }
+
+        [DisplayName("Server IP")]
+        public string ServerIP { get; set; }
+
+        [DisplayName("Server MAC")]
+        public string ServerMAC { get; set; }
+
+        [DisplayName("Server Port number")]
+        public string ServerPort { get; set; }
+
+        [DisplayName("Server video target folder")]
+        public string RecordingPath { get; set; }
+
+
         public List<AlertsModel> Alerts { get; set; }
 
     public SettingsViewModels()

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,21 +15,21 @@ namespace CSA_Project.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Settings
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             if (!User.IsInRole("Admin"))
-                return RedirectToAction("Index","Home");
-            return View(await db.Settings.ToListAsync());
+                return RedirectToAction("Index", "Home");
+            return View(db.Settings.ToList());
         }
 
         // GET: Settings/Details/5
-        public async Task<ActionResult> Details(long? id)
+        public ActionResult Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SettingsViewModels settingsViewModels = await db.Settings.FindAsync(id);
+            SettingsViewModels settingsViewModels = db.Settings.Find(id);
             if (settingsViewModels == null)
             {
                 return HttpNotFound();
@@ -49,12 +48,12 @@ namespace CSA_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,MaxPeopleAllowed")] SettingsViewModels settingsViewModels)
+        public ActionResult Create([Bind(Include = "Id,MaxPeopleAllowed,EuclidIP,EuclidMAC,EuclidPort,Topic,ServerIP,ServerMAC,ServerPort,RecordingPath")] SettingsViewModels settingsViewModels)
         {
             if (ModelState.IsValid)
             {
                 db.Settings.Add(settingsViewModels);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -62,13 +61,13 @@ namespace CSA_Project.Controllers
         }
 
         // GET: Settings/Edit/5
-        public async Task<ActionResult> Edit(long? id)
+        public ActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SettingsViewModels settingsViewModels = await db.Settings.FindAsync(id);
+            SettingsViewModels settingsViewModels = db.Settings.Find(id);
             if (settingsViewModels == null)
             {
                 return HttpNotFound();
@@ -81,25 +80,25 @@ namespace CSA_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,MaxPeopleAllowed")] SettingsViewModels settingsViewModels)
+        public ActionResult Edit([Bind(Include = "Id,MaxPeopleAllowed,EuclidIP,EuclidMAC,EuclidPort,Topic,ServerIP,ServerMAC,ServerPort,RecordingPath")] SettingsViewModels settingsViewModels)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(settingsViewModels).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(settingsViewModels);
         }
 
         // GET: Settings/Delete/5
-        public async Task<ActionResult> Delete(long? id)
+        public ActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SettingsViewModels settingsViewModels = await db.Settings.FindAsync(id);
+            SettingsViewModels settingsViewModels = db.Settings.Find(id);
             if (settingsViewModels == null)
             {
                 return HttpNotFound();
@@ -110,11 +109,11 @@ namespace CSA_Project.Controllers
         // POST: Settings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(long id)
+        public ActionResult DeleteConfirmed(long id)
         {
-            SettingsViewModels settingsViewModels = await db.Settings.FindAsync(id);
+            SettingsViewModels settingsViewModels = db.Settings.Find(id);
             db.Settings.Remove(settingsViewModels);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

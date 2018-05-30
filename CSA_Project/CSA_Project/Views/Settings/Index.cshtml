@@ -14,6 +14,30 @@
         <th>
             @Html.DisplayNameFor(model => model.MaxPeopleAllowed)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EuclidIP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EuclidMAC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EuclidPort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Topic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServerIP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServerMAC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ServerPort)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecordingPath)
+        </th>
         <th></th>
     </tr>
 
@@ -21,6 +45,30 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.MaxPeopleAllowed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EuclidIP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EuclidMAC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EuclidPort)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Topic)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServerIP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServerMAC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServerPort)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RecordingPath)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

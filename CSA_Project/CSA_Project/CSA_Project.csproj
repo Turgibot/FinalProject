@@ -278,7 +278,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -329,6 +328,10 @@
     <Compile Include="Migrations\201805201713380_RecreateAlerts.cs" />
     <Compile Include="Migrations\201805201713380_RecreateAlerts.Designer.cs">
       <DependentUpon>201805201713380_RecreateAlerts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805301131149_GlobalSettings.cs" />
+    <Compile Include="Migrations\201805301131149_GlobalSettings.Designer.cs">
+      <DependentUpon>201805301131149_GlobalSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -384,6 +387,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="CSA_Config\config.json" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -438,16 +442,17 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Views\Home\ros.cshtml" />
     <Content Include="Views\Settings\Create.cshtml" />
     <Content Include="Views\Settings\Delete.cshtml" />
     <Content Include="Views\Settings\Details.cshtml" />
     <Content Include="Views\Settings\Edit.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
-    <Content Include="Views\Home\ros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Euclid\" />
+    <Folder Include="Views\Setting\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -497,6 +502,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805201713380_RecreateAlerts.resx">
       <DependentUpon>201805201713380_RecreateAlerts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805301131149_GlobalSettings.resx">
+      <DependentUpon>201805301131149_GlobalSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

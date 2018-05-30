@@ -7,7 +7,7 @@ import requests
 from io import BytesIO
 import cv2
 
-source = "http://192.168.1.10:8088/stream?topic=/camera/color/image_raw"
+source = "http://192.168.1.101:8088/stream?topic=/camera/color/image_raw"
 target = "D:\Projects\FinalProject\CSA_Project\CSA_Project\Euclid"
 
 class EuclidCamera(object):

@@ -1,0 +1,18 @@
+﻿{
+  "app_name": "Closed Space Analyzer",
+  "euclid": {
+    "name": "Intel Euclid",
+    "mac": "000000",
+    "ip": "192.168.1.101",
+    "stream_port": 8088,
+    "cam_topic": "/stream?topic=/camera/color/image_raw"
+
+  },
+  "server": {
+    "name": "Web Server",
+    "mac": "000000",
+    "ip": "192.168.1.100",
+    "stream_port": 5000,
+    "video_recording_path": "PathToFOlder"
+  }
+}
