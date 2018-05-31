@@ -41,15 +41,7 @@ namespace CSA_Project.Models
         public string RecordingPath { get; set; }
 
 
-        public List<AlertsModel> Alerts { get; set; }
-
-    public SettingsViewModels()
-        {
-            this.MaxPeopleAllowed = 5;
-            this.Alerts = new List<AlertsModel>();
-        }
     }
-    
     public class AlertsModel
     {
         public long Id { get; set; }

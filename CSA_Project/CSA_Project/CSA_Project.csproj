@@ -333,6 +333,14 @@
     <Compile Include="Migrations\201805301131149_GlobalSettings.Designer.cs">
       <DependentUpon>201805301131149_GlobalSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805301921507_updateSettings.cs" />
+    <Compile Include="Migrations\201805301921507_updateSettings.Designer.cs">
+      <DependentUpon>201805301921507_updateSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805301924202_updateSettings1.cs" />
+    <Compile Include="Migrations\201805301924202_updateSettings1.Designer.cs">
+      <DependentUpon>201805301924202_updateSettings1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -443,16 +451,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Home\ros.cshtml" />
-    <Content Include="Views\Settings\Create.cshtml" />
-    <Content Include="Views\Settings\Delete.cshtml" />
-    <Content Include="Views\Settings\Details.cshtml" />
     <Content Include="Views\Settings\Edit.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Euclid\" />
-    <Folder Include="Views\Setting\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -505,6 +509,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805301131149_GlobalSettings.resx">
       <DependentUpon>201805301131149_GlobalSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805301921507_updateSettings.resx">
+      <DependentUpon>201805301921507_updateSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805301924202_updateSettings1.resx">
+      <DependentUpon>201805301924202_updateSettings1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

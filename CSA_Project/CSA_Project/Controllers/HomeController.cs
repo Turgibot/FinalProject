@@ -16,7 +16,7 @@ namespace CSA_Project.Controllers
     {
         public ActionResult Index()
         {
-            string path = @"D:\Projects\FinalProject\CSA_Project\CSA_Project\Python\Inference.py";
+            string path = @"D:\Projects\FinalProject\CSA_Project\CSA_Project\Python\streamer.py";
             //            string expression =
             //                @"import datetime
             //print(datetime.datetime.now())";
@@ -26,7 +26,7 @@ namespace CSA_Project.Controllers
             //            var scope = engine.CreateScope();
             //            compiled.Execute(scope);
             //var p = PatchParameter("Guy", 1);
-            //var s = run_cmd(path, "1");
+            var s = run_cmd(path, "");
             return View();
         }
 
@@ -41,7 +41,7 @@ namespace CSA_Project.Controllers
             }; // Add some sample parameters. Notice that there is no need in specifically setting the object type, interpreter will do that part for us in the script properly with high probability
 
             scope.SetVariable("params", d); // This will be the name of the dictionary in python script, initialized with previously created .NET Dictionary
-            ScriptSource source = engine.CreateScriptSourceFromFile(@"D:\Projects\FinalProject\CSA_Project\CSA_Project\Python\Inference.py"); // Load the script
+            ScriptSource source = engine.CreateScriptSourceFromFile(@"D:\Projects\FinalProject\CSA_Project\CSA_Project\Python\streamer.py"); // Load the script
             object result = source.Execute(scope);
             var dr = new Dictionary<string, object>();
             dr = scope.GetVariable("params"); // To get the finally set variable 'parameter' from the python script
@@ -50,7 +50,7 @@ namespace CSA_Project.Controllers
         public string run_cmd(string cmd, string args)
         {
             ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = @"C:\Program Files\Python35\python.exe"; //"PATH_TO_PYTHON_EXE";
+            start.FileName = @"C:\Python34\python.exe"; //"PATH_TO_PYTHON_EXE";
             start.Arguments = string.Format("\"{0}\" \"{1}\"", cmd, args);
             start.UseShellExecute = false;// Do not use OS shell
             start.CreateNoWindow = true; // We don't need new window
