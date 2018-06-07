@@ -453,6 +453,7 @@
     <Content Include="Views\Home\ros.cshtml" />
     <Content Include="Views\Settings\Edit.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\Settings\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
