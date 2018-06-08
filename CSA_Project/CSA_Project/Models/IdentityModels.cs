@@ -46,5 +46,7 @@ namespace CSA_Project.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<CSA_Project.Models.SelectorModel> SelectorModels { get; set; }
     }
 }

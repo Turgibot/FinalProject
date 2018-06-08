@@ -3,7 +3,7 @@
 from flask import Flask, render_template, Response
 from euclid import EuclidCamera
 
-host = '192.168.1.100'
+host = '192.168.1.102'
 app = Flask(__name__)
 
 @app.route('/')
