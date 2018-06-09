@@ -31,7 +31,7 @@ namespace CSA_Project.Controllers
             string python27 = setting.Python27;
             string video_feed = "http://"+host+":5000/video_feed";
             string args = "-a "+host+" -s "+src+" -m " + model + " -p " + weights;
-            run_cmd(python27, streamer, args);
+            //run_cmd(python27, streamer, args);
             ViewBag.host = video_feed;
             return View();
         }

@@ -16,7 +16,7 @@ COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
 
 class EuclidCamera(object):
-    def __init__(self,  source, target, model, weights, confidence):
+    def __init__(self,  source, target, model, weights, host, confidence):
         self.video = cv2.VideoCapture(source)
         self.confidence = confidence
         self.net = cv2.dnn.readNetFromCaffe(weights, model)
@@ -30,15 +30,14 @@ class EuclidCamera(object):
         self.h = 0
         self.w = 0
         self.inference_started = False
-
+        self.person_counter = 0;
+        self.host=host
 
     def __del__(self):
         self.video.release()
 
     def get_frame(self):
         success, self.image = self.video.read()
-
-
         if self.img_ready is True:
             # loop over the detections
             self.detections = self.current_detections
@@ -46,6 +45,7 @@ class EuclidCamera(object):
             self.w = self.current_w
 
         if self.inference_started is True and len(self.detections):
+            counter = 0
             for i in np.arange(0, self.detections.shape[2]):
                 confidence = self.detections[0, 0, i, 2]
                 if confidence > self.confidence:
@@ -55,6 +55,7 @@ class EuclidCamera(object):
                     # the object
                     idx = int(self.detections[0, 0, i, 1])
                     if idx is 15:
+                        counter += 1
                         box = self.detections[0, 0, i, 3:7] * np.array([self.w, self.h, self.w, self.h])
                         (startX, startY, endX, endY) = box.astype("int")
 
@@ -66,6 +67,10 @@ class EuclidCamera(object):
                         y = startY - 15 if startY - 15 > 15 else startY + 15
                         cv2.putText(self.image, label, (startX, y),
                                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
+            if counter is not self.person_counter:
+                requests.put('http://localhost:53983/api/MainViewerAPI/1', data={'InferenceResult': counter,'MaxPeopleAllowed': 0});
+                self.person_counter = counter;
+
             self.img_ready = False
 
 

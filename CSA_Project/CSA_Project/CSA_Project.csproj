@@ -275,6 +275,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlertsModelsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MainViewerAPIController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
     <Compile Include="Controllers\SelectorModelsController.cs" />

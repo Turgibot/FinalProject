@@ -39,7 +39,7 @@ def gen(camera):
 def video_feed():
     return Response(gen(
         EuclidCamera(source=args["source"], target=args["target"], model=args["model"], weights=args["prototxt"],
-                     confidence=args["confidence"])),
+                     host=args["host"], confidence=args["confidence"])),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
