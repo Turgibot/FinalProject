@@ -19,17 +19,50 @@ namespace CSA_Project
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            CreateRolesandUsersAsync();
+            AppInisialSetupAsync();
         }
 
-        private async void CreateRolesandUsersAsync()
+        private async void AppInisialSetupAsync()
         {
             ApplicationDbContext context = new ApplicationDbContext();
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-           
 
+            //setting up the app
+            if (context.Settings.Count() == 0)
+            {
+                var settings = new SettingsViewModels();
+                settings.MaxPeopleAllowed = 3;
+                string json;
+                using (StreamReader r = new StreamReader(@"D:\Projects\FinalProject\CSA_Project\CSA_Project\CSA_Config\config.json"))
+                {
+                    json = r.ReadToEnd();
+                }
+                JObject jObject = JObject.Parse(json);
+                JToken euclid = jObject["euclid"];
+                JToken server = jObject["server"];
+                JToken net = jObject["neural_net"];
+                JToken db = jObject["db_name"];
+                JToken connection = jObject["connection_string"];
+                settings.DB_Name = (string)db;
+                settings.ConnectionString = (string)connection;
+                settings.EuclidIP = (string)euclid["ip"];
+                settings.EuclidMAC = (string)euclid["mac"];
+                settings.EuclidPort = (string)euclid["stream_port"];
+                settings.Topic = (string)euclid["cam_topic"];
+
+                settings.ServerIP = (string)server["ip"];
+                settings.ServerMAC = (string)server["mac"];
+                settings.ServerPort = (string)euclid["stream_port"];
+                settings.RecordingPath = (string)euclid["video_recording_path"];
+
+                settings.NN_Model = (string)net["model"];
+                settings.NN_Weights = (string)net["weights"];
+
+                context.Settings.Add(settings);
+                await context.SaveChangesAsync();
+            }
 
             // In Startup iam creating first Admin Role and creating a default Admin User    
             if (!roleManager.RoleExists("Admin"))
@@ -40,26 +73,7 @@ namespace CSA_Project
                 role.Name = "Admin";
                 roleManager.Create(role);
 
-                //Here we create a Admin super user who will maintain the website                  
-
-                //var user = new ApplicationUser();
-                //user.UserName = "Guy";
-                //user.Email = "turgibot@gmail.com";
-                //user.EmailConfirmed = true;
-                //user.FirstName = "Guy";
-                //user.LastName = "Tordjman";
-                //user.PhoneNumber = "0537203788";
-
-                //string userPWD = "Q@w3e4";
-
-                //var chkUser = UserManager.Create(user, userPWD);
-
-                ////Add default User to Role Admin   
-                //if (chkUser.Succeeded)
-                //{
-                //    var result1 = UserManager.AddToRole(user.Id, "Admin");
-
-                //}
+              
             }
 
             // creating Creating Employee role    
@@ -70,31 +84,14 @@ namespace CSA_Project
                 roleManager.Create(role);
 
             }
-            if (context.Settings.Count() == 0)
+            if(context.SelectorModels.Count() == 0)
             {
-                var settings = new SettingsViewModels();
-                settings.MaxPeopleAllowed = 3;
-                string json;
-                using (StreamReader r = new StreamReader(@"C:\FinalProject\CSA_Project\CSA_Project\CSA_Config\config.json"))
-                {
-                    json = r.ReadToEnd();
-                }
-                JObject jObject = JObject.Parse(json);
-                JToken euclid = jObject["euclid"];
-                JToken server = jObject["server"];
-
-                settings.EuclidIP = (string)euclid["ip"];
-                settings.EuclidMAC = (string)euclid["mac"];
-                settings.EuclidPort = (string)euclid["stream_port"];
-                settings.Topic = (string)euclid["cam_topic"];
-
-                settings.ServerIP = (string)server["ip"];
-                settings.ServerMAC = (string)server["mac"];
-                settings.ServerPort = (string)euclid["stream_port"];
-                settings.RecordingPath = (string)euclid["video_recording_path"];
-                context.Settings.Add(settings);
+                var selector = new SelectorModel();
+                selector.SelectedValue = "People";
+                context.SelectorModels.Add(selector);
                 await context.SaveChangesAsync();
             }
+            
             //create a default alert
             if (context.Alerts.Count() == 0)
             {

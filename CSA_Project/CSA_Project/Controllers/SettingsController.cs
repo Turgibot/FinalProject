@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -15,21 +16,21 @@ namespace CSA_Project.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Settings
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             if (!User.IsInRole("Admin"))
                 return RedirectToAction("Index", "Home");
-            return View(db.Settings.ToList());
+            return View(await db.Settings.ToListAsync());
         }
 
         // GET: Settings/Details/5
-        public ActionResult Details(long? id)
+        public async Task<ActionResult> Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SettingsViewModels settingsViewModels = db.Settings.Find(id);
+            SettingsViewModels settingsViewModels = await db.Settings.FindAsync(id);
             if (settingsViewModels == null)
             {
                 return HttpNotFound();
@@ -48,12 +49,12 @@ namespace CSA_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,MaxPeopleAllowed,EuclidIP,EuclidMAC,EuclidPort,Topic,ServerIP,ServerMAC,ServerPort,RecordingPath")] SettingsViewModels settingsViewModels)
+        public async Task<ActionResult> Create([Bind(Include = "Id,MaxPeopleAllowed,EuclidIP,EuclidMAC,EuclidPort,Topic,ServerIP,ServerMAC,ServerPort,RecordingPath,Streamer,Python27,Python34,DB_Name,ConnectionString,NN_Model,NN_Weights")] SettingsViewModels settingsViewModels)
         {
             if (ModelState.IsValid)
             {
                 db.Settings.Add(settingsViewModels);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
@@ -61,13 +62,13 @@ namespace CSA_Project.Controllers
         }
 
         // GET: Settings/Edit/5
-        public ActionResult Edit(long? id)
+        public async Task<ActionResult> Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SettingsViewModels settingsViewModels = db.Settings.Find(id);
+            SettingsViewModels settingsViewModels = await db.Settings.FindAsync(id);
             if (settingsViewModels == null)
             {
                 return HttpNotFound();
@@ -80,25 +81,25 @@ namespace CSA_Project.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,MaxPeopleAllowed,EuclidIP,EuclidMAC,EuclidPort,Topic,ServerIP,ServerMAC,ServerPort,RecordingPath")] SettingsViewModels settingsViewModels)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,MaxPeopleAllowed,EuclidIP,EuclidMAC,EuclidPort,Topic,ServerIP,ServerMAC,ServerPort,RecordingPath,Streamer,Python27,Python34,DB_Name,ConnectionString,NN_Model,NN_Weights")] SettingsViewModels settingsViewModels)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(settingsViewModels).State = EntityState.Modified;
-                db.SaveChanges();
+                await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(settingsViewModels);
         }
 
         // GET: Settings/Delete/5
-        public ActionResult Delete(long? id)
+        public async Task<ActionResult> Delete(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SettingsViewModels settingsViewModels = db.Settings.Find(id);
+            SettingsViewModels settingsViewModels = await db.Settings.FindAsync(id);
             if (settingsViewModels == null)
             {
                 return HttpNotFound();
@@ -109,11 +110,11 @@ namespace CSA_Project.Controllers
         // POST: Settings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(long id)
+        public async Task<ActionResult> DeleteConfirmed(long id)
         {
-            SettingsViewModels settingsViewModels = db.Settings.Find(id);
+            SettingsViewModels settingsViewModels = await db.Settings.FindAsync(id);
             db.Settings.Remove(settingsViewModels);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
@@ -124,13 +125,6 @@ namespace CSA_Project.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-        public void BtnDownload_Click(object sender, EventArgs e)
-        {
-            Response.Clear();
-            Response.ContentType = "text/plain";
-            Response.AppendHeader("Content-Disposition", "attachment; filename=foo.txt");
-            Response.Write("some text contents that will be sent to the user");
         }
     }
 }

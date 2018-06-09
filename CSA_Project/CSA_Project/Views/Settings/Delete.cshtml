@@ -1,0 +1,152 @@
+﻿@model CSA_Project.Models.SettingsViewModels
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SettingsViewModels</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxPeopleAllowed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaxPeopleAllowed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EuclidIP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EuclidIP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EuclidMAC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EuclidMAC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EuclidPort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EuclidPort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Topic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Topic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServerIP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServerIP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServerMAC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServerMAC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServerPort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServerPort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecordingPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecordingPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Streamer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Streamer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Python27)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Python27)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Python34)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Python34)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DB_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DB_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConnectionString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConnectionString)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NN_Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NN_Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NN_Weights)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NN_Weights)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -40,6 +40,27 @@ namespace CSA_Project.Models
         [DisplayName("Server video target folder")]
         public string RecordingPath { get; set; }
 
+        [DisplayName("Streamer script")]
+        public string Streamer { get; set; }
+
+        [DisplayName("Python2.7")]
+        public string Python27 { get; set; }
+
+        [DisplayName("Python3.4")]
+        public string Python34 { get; set; }
+
+        [DisplayName("Db Name")]
+        public string DB_Name { get; set; }
+        [DisplayName("DB Connection String")]
+        public string ConnectionString { get; set; }
+
+        [DisplayName("Neural Network Model")]
+        public string NN_Model { get; set; }
+        [DisplayName("Neural Network_Weights")]
+        public string NN_Weights { get; set; }
+
+
+
 
     }
     public class AlertsModel

@@ -1,10 +1,24 @@
 # main.py
-
 from flask import Flask, render_template, Response
 from euclid import EuclidCamera
-
-host = '192.168.1.102'
+# host = '192.168.1.102'
 app = Flask(__name__)
+ap = argparse.ArgumentParser()
+ap.add_argument("-h", "--host", required=True,
+                help="host streaming address")
+ap.add_argument("-s", "--source", required=True,
+                help="source ip of camera stream")
+ap.add_argument("-t", "--target", required=False, default='',
+                help="path to recording floder")
+ap.add_argument("-p", "--prototxt", required=True,
+                help="path to Caffe 'deploy' prototxt file")
+ap.add_argument("-m", "--model", required=True,
+                help="path to Caffe pre-trained model")
+ap.add_argument("-c", "--confidence", type=float, default=0.2,
+                help="minimum probability to filter weak detections")
+args = vars(ap.parse_args())
+
+
 
 @app.route('/')
 def index():
@@ -19,8 +33,11 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(gen(EuclidCamera()),
+    return Response(gen(EuclidCamera(source=args["source"] , target=args["target"], model=args["model"], weights=args["prototxt"], confidence=args["confidence"] )),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run(host=host, threaded=True, debug=True, )
+    # construct the argument parse and parse the arguments
+  
+
+    app.run(host=args["host"], threaded=True, debug=False )

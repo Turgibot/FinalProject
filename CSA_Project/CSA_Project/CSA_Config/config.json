@@ -1,5 +1,7 @@
 ﻿{
   "app_name": "Closed Space Analyzer",
+  "db_name": "final_project",
+  "connection_string": "Data Source=.;Initial Catalog=final_project;Integrated Security=True",
   "euclid": {
     "name": "Intel Euclid",
     "mac": "44-2C-05-4D-54-1D",
@@ -13,6 +15,15 @@
     "mac": "10-FE-ED-1C-4F-5D\t",
     "ip": "192.168.1.100",
     "stream_port": "5000",
-    "video_recording_path": "SelectPathToFOlder"
+    "video_recording_path": "SelectPathToFOlder",
+    "python27": "C:\\Python27\\python.exe",
+    "python34": "C:\\Python34\\python.exe",
+    "streamer": "D:\\Projects\\FinalProject\\CSA_Project\\CSA_Project\\Python\\streamer.py"
+  },
+  "neural_net": {
+    "name": "Mobile net",
+    "model": "D:\\Projects\\FinalProject\\CSA_Project\\CSA_Project\\Python\\detector\\MobileNetSSD_deploy.caffemodel",
+    "weights": "D:\\Projects\\FinalProject\\CSA_Project\\CSA_Project\\Python\\detector\\MobileNetSSD_deploy.prototxt"
   }
 }
+ 
