@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <!--@Html.ActionLink("Create New", "Create")-->
 </p>
 <table class="table">
     <tr>
@@ -41,39 +41,46 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaxPeopleAllowed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EuclidIP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EuclidMAC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EuclidPort)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Topic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServerIP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServerMAC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServerPort)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RecordingPath)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) 
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPeopleAllowed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EuclidIP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EuclidMAC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EuclidPort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Topic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServerIP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServerMAC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServerPort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecordingPath)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            </td>
+        </tr>
+
+
+    }
 
 </table>
+<div style="display:inline-flex; text-align:center; margin:auto;">
+    <img src="~/Images/pedestrian.jpg" style="width:50%"/>
+    <img src="~/Images/drowsy-driving.jpg" style="width:50%; padding: 10% 0" />
+</div>

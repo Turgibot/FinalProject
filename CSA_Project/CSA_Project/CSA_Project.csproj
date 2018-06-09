@@ -363,6 +363,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\drowsy-driving.jpg" />
+    <Content Include="Images\pedestrian.jpg" />
     <Content Include="Python\euclid.py" />
     <Content Include="Python\streamer.py" />
     <Content Include="Python\templates\index.html" />
