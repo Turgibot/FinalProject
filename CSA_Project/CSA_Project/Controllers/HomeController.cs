@@ -16,7 +16,7 @@ namespace CSA_Project.Controllers
     {
         public ActionResult Index()
         {
-            string path = @"D:\Projects\FinalProject\CSA_Project\CSA_Project\Python\streamer.py";
+            string path = @"C:\FinalProject\CSA_Project\CSA_Project\Python\streamer.py";
             //            string expression =
             //                @"import datetime
             //print(datetime.datetime.now())";
@@ -26,7 +26,7 @@ namespace CSA_Project.Controllers
             //            var scope = engine.CreateScope();
             //            compiled.Execute(scope);
             //var p = PatchParameter("Guy", 1);
-            var s = run_cmd(path, "");
+            //var s = run_cmd(path, "");
             return View();
         }
 
@@ -41,7 +41,7 @@ namespace CSA_Project.Controllers
             }; // Add some sample parameters. Notice that there is no need in specifically setting the object type, interpreter will do that part for us in the script properly with high probability
 
             scope.SetVariable("params", d); // This will be the name of the dictionary in python script, initialized with previously created .NET Dictionary
-            ScriptSource source = engine.CreateScriptSourceFromFile(@"D:\Projects\FinalProject\CSA_Project\CSA_Project\Python\streamer.py"); // Load the script
+            ScriptSource source = engine.CreateScriptSourceFromFile(@"C:\FinalProject\CSA_Project\CSA_Project\Python\streamer.py"); // Load the script
             object result = source.Execute(scope);
             var dr = new Dictionary<string, object>();
             dr = scope.GetVariable("params"); // To get the finally set variable 'parameter' from the python script
@@ -60,7 +60,7 @@ namespace CSA_Project.Controllers
             {
                 using (StreamReader reader = process.StandardOutput)
                 {
-                    string stderr = process.StandardError.ReadToEnd(); // Here are the exceptions from our Python script
+                    //string stderr = process.StandardError.ReadToEnd(); // Here are the exceptions from our Python script
                     string result = reader.ReadToEnd(); // Here is the result of StdOut(for example: print "test")
                     return result;
                 }

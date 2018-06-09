@@ -1,0 +1,31 @@
+﻿@model IEnumerable<CSA_Project.Models.SelectorModel>
+
+@{
+    ViewBag.Title = "Your desired view type";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    @*<tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SelectedValue)
+        </th>
+        <th></th>
+    </tr>*@
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SelectedValue)
+        </td>
+        <td>
+            @Html.ActionLink("Change", "Edit", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

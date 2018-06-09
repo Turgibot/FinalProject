@@ -75,7 +75,7 @@ namespace CSA_Project
                 var settings = new SettingsViewModels();
                 settings.MaxPeopleAllowed = 3;
                 string json;
-                using (StreamReader r = new StreamReader(@"D:\Projects\FinalProject\CSA_Project\CSA_Project\CSA_Config\config.json"))
+                using (StreamReader r = new StreamReader(@"C:\FinalProject\CSA_Project\CSA_Project\CSA_Config\config.json"))
                 {
                     json = r.ReadToEnd();
                 }

@@ -277,6 +277,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
+    <Compile Include="Controllers\SelectorModelsController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -341,12 +342,21 @@
     <Compile Include="Migrations\201805301924202_updateSettings1.Designer.cs">
       <DependentUpon>201805301924202_updateSettings1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806080921111_AddSelectorModel.cs" />
+    <Compile Include="Migrations\201806080921111_AddSelectorModel.Designer.cs">
+      <DependentUpon>201806080921111_AddSelectorModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806081013393_AddSelectorModel_1.cs" />
+    <Compile Include="Migrations\201806081013393_AddSelectorModel_1.Designer.cs">
+      <DependentUpon>201806081013393_AddSelectorModel_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\MainViewerViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="Models\SelectorModel.cs" />
     <Compile Include="Models\SettingsViewModels.cs" />
     <Compile Include="Models\Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -452,10 +462,13 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Home\ros.cshtml" />
     <Content Include="Views\Settings\Edit.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
-    <Content Include="Views\Settings\Create.cshtml" />
+    <Content Include="Views\SelectorModels\Create.cshtml" />
+    <Content Include="Views\SelectorModels\Delete.cshtml" />
+    <Content Include="Views\SelectorModels\Details.cshtml" />
+    <Content Include="Views\SelectorModels\Edit.cshtml" />
+    <Content Include="Views\SelectorModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -518,6 +531,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805301924202_updateSettings1.resx">
       <DependentUpon>201805301924202_updateSettings1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806080921111_AddSelectorModel.resx">
+      <DependentUpon>201806080921111_AddSelectorModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806081013393_AddSelectorModel_1.resx">
+      <DependentUpon>201806081013393_AddSelectorModel_1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
