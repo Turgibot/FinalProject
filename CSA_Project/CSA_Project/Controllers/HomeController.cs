@@ -17,11 +17,9 @@ namespace CSA_Project.Controllers
     {
         private ApplicationDbContext DB = new ApplicationDbContext();
         
-
-
         public ActionResult Index()
         {
-        
+            //-a 192.168.1.102 -s 192.168.1.101:8088/stream?topic=/camera/color/image_raw -m C:\FinalProject\CSA_Project\CSA_Project\Python\detector\MobileNetSSD_deploy.caffemodel -p C:\FinalProject\CSA_Project\CSA_Project\Python\detector\MobileNetSSD_deploy.prototxt
             var setting = DB.Settings.FirstOrDefault();
             string streamer = setting.Streamer;
             string host = setting.ServerIP;
@@ -31,7 +29,7 @@ namespace CSA_Project.Controllers
             string python27 = setting.Python27;
             string video_feed = "http://"+host+":5000/video_feed";
             string args = "-a "+host+" -s "+src+" -m " + model + " -p " + weights;
-            //run_cmd(python27, streamer, args);
+            run_cmd(python27, streamer, args);
             ViewBag.host = video_feed;
             return View();
         }

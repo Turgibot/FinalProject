@@ -47,4 +47,4 @@ if __name__ == '__main__':
     # construct the argument parse and parse the arguments
 
 
-    app.run(host=args["host"], threaded=True, debug=False)
+    app.run(host=args["host"], threaded=True, debug=True)
