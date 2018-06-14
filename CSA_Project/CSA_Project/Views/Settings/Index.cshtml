@@ -4,120 +4,266 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
+
+<div>
+    <h2>Application Settings</h2>
+    <hr />
+
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FirstOrDefault().Id })
+
+    <dl class="dl-horizontal">
+        <dt>
             @Html.DisplayNameFor(model => model.MaxPeopleAllowed)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().MaxPeopleAllowed)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.EuclidIP)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().EuclidIP)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.EuclidMAC)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().EuclidMAC)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.EuclidPort)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().EuclidPort)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Topic)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().Topic)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ServerIP)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().ServerIP)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ServerMAC)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().ServerMAC)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ServerPort)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().ServerPort)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.RecordingPath)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().RecordingPath)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Streamer)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().Streamer)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Python27)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().Python27)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Python34)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().Python34)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.DB_Name)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().DB_Name)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ConnectionString)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().ConnectionString)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.NN_Model)
-        </th>
-        <th>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().NN_Model)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.NN_Weights)
-        </th>
-        <th></th>
-    </tr>
+        </dt>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaxPeopleAllowed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EuclidIP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EuclidMAC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EuclidPort)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Topic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServerIP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServerMAC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServerPort)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RecordingPath)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Streamer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Python27)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Python34)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DB_Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ConnectionString)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NN_Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NN_Weights)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+        <dd>
+            @Html.DisplayFor(model => model.FirstOrDefault().NN_Weights)
+        </dd>
 
-</table>
+    </dl>
+</div>
+
+@Html.ActionLink("Edit", "Edit", new { id = Model.FirstOrDefault().Id })
+
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxPeopleAllowed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EuclidIP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EuclidMAC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EuclidPort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Topic)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServerIP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServerMAC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServerPort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RecordingPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Streamer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Python27)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Python34)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DB_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConnectionString)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NN_Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NN_Weights)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxPeopleAllowed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EuclidIP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EuclidMAC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EuclidPort)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Topic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServerIP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServerMAC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServerPort)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecordingPath)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Streamer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Python27)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Python34)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DB_Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConnectionString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NN_Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NN_Weights)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>*@
