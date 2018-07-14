@@ -50,5 +50,7 @@ namespace CSA_Project.Models
         public System.Data.Entity.DbSet<CSA_Project.Models.SelectorModel> SelectorModels { get; set; }
 
         public System.Data.Entity.DbSet<CSA_Project.Models.DetectPeople> DetectPeoples { get; set; }
+
+        public System.Data.Entity.DbSet<CSA_Project.Models.LoggerModel> LoggerModels { get; set; }
     }
 }

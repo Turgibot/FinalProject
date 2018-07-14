@@ -23,6 +23,7 @@
 </div>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script>
+    var email = "@User.Identity.Name";
     var canv = document.getElementById('mycanvas');
     var ctx = canv.getContext('2d');
     var new_img = document.createElement('img');
@@ -32,8 +33,7 @@
     var alert_element = document.getElementById('alert_msg');
     var num_detections = 0;
     var boxes = [];
-    var new_data = true;
-
+    var new_data = true; 
     new_img.setAttribute('id', 'streamer');
     new_img.setAttribute('src', 'http://192.168.1.100:8080/stream?topic=/camera/color/image_raw');
     var itrvl = setInterval(function () {
@@ -51,38 +51,54 @@
         ctx.stroke();
 
     }, 33)
-    
-    $(document).ready(function () {
-        var counter = 0;
-        var prev_counter = -1;
-        var prev_id = 0;
 
-        
+    $(document).ready(function () {
+        var prev_id = 0;
+        var isDirty = false;
+        var delta = 0;
+        var prev_delta = 0;
         //ajax get detection information from DB
         var get_itrvl = setInterval(function () {
             
             $.get("http://localhost:53983/api/GetLastDetection", function (data) {
                 if (data.id != prev_id) {
-                   
+                    delta = data.numberOfPeople - max_people;
                     prev_id = data.id;
                     num_detections = data.numberOfPeople;
                     num_people.innerHTML = num_detections;
-                    if (data.numberOfPeople > max_people) {
-                        alert_element.innerText = alert_txt + (data.numberOfPeople - max_people)
+                    if (delta > 0) {
+                        alert_element.innerText = alert_txt + delta;
                     } else {
                         alert_element.innerText = "";
                     }
                     boxes = data.boxesValue;
-                    new_data = true;
+                    
                 }
-                else {
-                    new_data = false;
+                if (delta != prev_delta) {
+                    prev_delta = delta;
+                    if(delta == 0)
+                        logAlert(delta, 600, "System Idle");
+                    else
+                        logAlert(delta, 601, "Over Populated Space Alert");
                 }
 
-                
+
             })
-        },100)
+        }, 100)
+
     })
+    var logAlert = function (delta, code, msg) {
+
+        $.post("http://localhost:53983/api/Logger", {
+            Email: email, 
+            DateTime: new Date().toISOString(),
+            Code: code,
+            Key: "Delta",
+            Value: delta,
+            Message: msg
+        });
+       
+    }
 </script>
 
 

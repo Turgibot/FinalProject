@@ -16,7 +16,14 @@ namespace CSA_Project.Models
 
             return "";
         }
+        public static string GetID(this System.Security.Principal.IPrincipal usr)
+        {
+            var id = ((ClaimsIdentity)usr.Identity).FindFirst("id");
+            if (id != null)
+                return id.Value;
 
+            return "";
+        }
     }
 
 

@@ -276,6 +276,8 @@
     <Compile Include="Controllers\AlertsModelsController.cs" />
     <Compile Include="Controllers\DetectPeoplesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoggerController.cs" />
+    <Compile Include="Controllers\LoggerModelsController.cs" />
     <Compile Include="Controllers\MainViewerAPIController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
@@ -392,10 +394,23 @@
     <Compile Include="Migrations\201807141215301_DetectPeople1.Designer.cs">
       <DependentUpon>201807141215301_DetectPeople1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807141701257_Logger.cs" />
+    <Compile Include="Migrations\201807141701257_Logger.Designer.cs">
+      <DependentUpon>201807141701257_Logger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807141801458_Logger1.cs" />
+    <Compile Include="Migrations\201807141801458_Logger1.Designer.cs">
+      <DependentUpon>201807141801458_Logger1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807141817012_Logger2.cs" />
+    <Compile Include="Migrations\201807141817012_Logger2.Designer.cs">
+      <DependentUpon>201807141817012_Logger2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DetectPeople.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LoggerModel.cs" />
     <Compile Include="Models\MainViewerViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
@@ -418,6 +433,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\drowsy-driving.jpg" />
     <Content Include="Images\pedestrian.jpg" />
+    <Content Include="Python\detector\person_detection.py" />
     <Content Include="Python\detector\pic_inference.py" />
     <Content Include="Python\detector\video_inference.py" />
     <Content Include="Python\euclid.py" />
@@ -520,6 +536,11 @@
     <Content Include="Views\Settings\Details.cshtml" />
     <Content Include="Views\Settings\Edit.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\LoggerModels\Create.cshtml" />
+    <Content Include="Views\LoggerModels\Delete.cshtml" />
+    <Content Include="Views\LoggerModels\Details.cshtml" />
+    <Content Include="Views\LoggerModels\Edit.cshtml" />
+    <Content Include="Views\LoggerModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -618,6 +639,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807141215301_DetectPeople1.resx">
       <DependentUpon>201807141215301_DetectPeople1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807141701257_Logger.resx">
+      <DependentUpon>201807141701257_Logger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807141801458_Logger1.resx">
+      <DependentUpon>201807141801458_Logger1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807141817012_Logger2.resx">
+      <DependentUpon>201807141817012_Logger2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
