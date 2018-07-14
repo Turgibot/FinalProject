@@ -3,18 +3,87 @@
     <h1>Closed Space Analysis Console</h1>
 
 </div>
-<div style="margin:auto; text-align:center">
-    <h4> ALERT!!! Number of people exceeded allowed by ###</h4>
+<div style="margin:auto; text-align:center;min-height: 40px">
+    <span id="alert_msg" style="font-size:20px;line-height:2; color:red"></span>
 </div>
 
 <div style="width:640px; height:320px ; background-color:aqua; margin:auto; text-align:center">
+    <canvas id="mycanvas" width="320" height="240" style="border:1px solid black; margin-top:40px"></canvas>
+</div>
+<div style="margin:auto; text-align:center; font-size:20px">
+    <span> current number of people is </span>
+    <span id="num_people">%%%</span>
+    <span>out of </span>
+    <span id="max_people">@ViewBag.maxPeople</span>
+    <span>allowed</span>
+</div>
 
-    <!-- <img id="inference" src="http://192.168.1.101:8088/stream?topic=/camera/color/image_raw" />-->
-    <img id="inference" src="@ViewBag.host" style="margin-top:40px"/>
+<div>
+    <h1 id="test-h1"></h1>
 </div>
-<div style="margin:auto; text-align:center">
-    <h4> current number of people is %%% out of %%% allowed</h4>
-</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    var canv = document.getElementById('mycanvas');
+    var ctx = canv.getContext('2d');
+    var new_img = document.createElement('img');
+    var num_people = document.getElementById('num_people');
+    var max_people = document.getElementById('max_people').innerText;
+    var alert_txt = 'ALERT!!! Number of people exceeded allowed by ';
+    var alert_element = document.getElementById('alert_msg');
+    var num_detections = 0;
+    var boxes = [];
+    var new_data = true;
+
+    new_img.setAttribute('id', 'streamer');
+    new_img.setAttribute('src', 'http://192.168.1.100:8080/stream?topic=/camera/color/image_raw');
+    var itrvl = setInterval(function () {
+        ctx.drawImage(new_img, 0, 0);
+        ctx.beginPath();
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = 'red';
+        ctx.font = '14px Arial';
+        ctx.fillStyle = 'aqua';
+        for (var i = 0; i <boxes.length> 0; i++) {
+            values = boxes[i].split(':');
+            ctx.rect(values[1], values[2], values[3], values[4]);
+            ctx.fillText("Person " + values[0] + "%", parseInt(values[1]) + 10, parseInt(values[2])+15 );
+        }
+        ctx.stroke();
+
+    }, 33)
+    
+    $(document).ready(function () {
+        var counter = 0;
+        var prev_counter = -1;
+        var prev_id = 0;
+
+        
+        //ajax get detection information from DB
+        var get_itrvl = setInterval(function () {
+            
+            $.get("http://localhost:53983/api/GetLastDetection", function (data) {
+                if (data.id != prev_id) {
+                   
+                    prev_id = data.id;
+                    num_detections = data.numberOfPeople;
+                    num_people.innerHTML = num_detections;
+                    if (data.numberOfPeople > max_people) {
+                        alert_element.innerText = alert_txt + (data.numberOfPeople - max_people)
+                    } else {
+                        alert_element.innerText = "";
+                    }
+                    boxes = data.boxesValue;
+                    new_data = true;
+                }
+                else {
+                    new_data = false;
+                }
+
+                
+            })
+        },100)
+    })
+</script>
 
 
 
