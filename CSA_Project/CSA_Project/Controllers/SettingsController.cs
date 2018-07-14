@@ -18,7 +18,7 @@ namespace CSA_Project.Controllers
         // GET: Settings
         public async Task<ActionResult> Index()
         {
-            if (!User.IsInRole("Admin"))
+            if (User.IsInRole("Viewer"))
                 return RedirectToAction("Index", "Home");
             return View(await db.Settings.ToListAsync());
         }

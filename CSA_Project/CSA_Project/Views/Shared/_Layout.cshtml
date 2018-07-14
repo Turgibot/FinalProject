@@ -30,10 +30,7 @@
                     <li>@Html.ActionLink("Console", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Logs", "Index", "LoggerModels", new { area = "" }, null)</li>
                     
-                    @if (User.IsInRole("Master"))
-                    {
-                        <li>@Html.ActionLink("Settings", "Index", "ApplicationUsers", new { area = "" }, null)</li>
-                    }
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
