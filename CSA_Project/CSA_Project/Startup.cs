@@ -65,6 +65,16 @@ namespace CSA_Project
             }
 
             // In Startup iam creating first Admin Role and creating a default Admin User    
+            if (!roleManager.RoleExists("Master"))
+            {
+
+                // first we create Admin rool   
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Master";
+                roleManager.Create(role);
+
+            }
+
             if (!roleManager.RoleExists("Admin"))
             {
 
@@ -73,9 +83,7 @@ namespace CSA_Project
                 role.Name = "Admin";
                 roleManager.Create(role);
 
-              
             }
-
             // creating Creating Employee role    
             if (!roleManager.RoleExists("Viewer"))
             {
