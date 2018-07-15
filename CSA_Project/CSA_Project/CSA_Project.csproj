@@ -433,7 +433,8 @@
     <Content Include="Global.asax" />
     <Content Include="Images\drowsy-driving.jpg" />
     <Content Include="Images\pedestrian.jpg" />
-    <Content Include="Python\detector\person_detection.py" />
+    <Content Include="Python\DrawsinessDetector\detect_drawsiness.py" />
+    <Content Include="Python\PersonDetector\person_detection.py" />
     <Content Include="Scripts\app\_run.js" />
     <Content Include="Scripts\app\app.datamodel.js" />
     <Content Include="Scripts\app\app.viewmodel.js" />
@@ -467,8 +468,8 @@
     <Content Include="CSA_Config\config.json" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <Content Include="Python\detector\MobileNetSSD_deploy.caffemodel" />
-    <Content Include="Python\detector\MobileNetSSD_deploy.prototxt" />
+    <Content Include="Python\PersonDetector\MobileNetSSD_deploy.caffemodel" />
+    <Content Include="Python\PersonDetector\MobileNetSSD_deploy.prototxt" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\eventemitter2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

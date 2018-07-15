@@ -11,6 +11,7 @@ var boxes = [];
 var new_data = true;
 new_img.setAttribute('id', 'streamer');
 new_img.setAttribute('src', 'http://192.168.1.100:8080/stream?topic=/camera/color/image_raw');
+
 var itrvl = setInterval(function () {
     ctx.drawImage(new_img, 0, 0);
     ctx.beginPath();
