@@ -36,7 +36,7 @@ Instructor: Dr. Reuven Cohen
   <li>Requests - python</li>
 	<li>Opencv - python</li>
 	<li>urllib - python</li>
-	<li>MCV and Entity frameworks - .NET</li>
+	<li>MCV and Entity frameworks - .NET</li><li>Json</li>
 </ol>
 
 
