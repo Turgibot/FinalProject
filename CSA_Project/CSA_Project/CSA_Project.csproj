@@ -434,11 +434,6 @@
     <Content Include="Images\drowsy-driving.jpg" />
     <Content Include="Images\pedestrian.jpg" />
     <Content Include="Python\detector\person_detection.py" />
-    <Content Include="Python\detector\pic_inference.py" />
-    <Content Include="Python\detector\video_inference.py" />
-    <Content Include="Python\euclid.py" />
-    <Content Include="Python\streamer.py" />
-    <Content Include="Python\templates\index.html" />
     <Content Include="Scripts\app\_run.js" />
     <Content Include="Scripts\app\app.datamodel.js" />
     <Content Include="Scripts\app\app.viewmodel.js" />
@@ -467,11 +462,11 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="CSA_Config\config.json" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <Content Include="Python\detector\example.cpp" />
     <Content Include="Python\detector\MobileNetSSD_deploy.caffemodel" />
     <Content Include="Python\detector\MobileNetSSD_deploy.prototxt" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -489,6 +484,7 @@
     <Content Include="Scripts\roslib.min.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
+    <Content Include="Scripts\utils.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -544,7 +540,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Euclid\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
