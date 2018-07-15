@@ -70,14 +70,13 @@
                         alert_element.innerText = alert_txt + delta;
                     } else {
                         alert_element.innerText = "";
-                        delta = 0;
                     }
                     boxes = data.boxesValue;
                     
                 }
-                if (delta >= 0 && delta != prev_delta) {
+                if (delta != prev_delta) {
                     prev_delta = delta;
-                    if(delta == 0)
+                    if(delta <= 0)
                         logAlert(delta, 600, "System Idle");
                     else
                         logAlert(delta, 601, "Over Populated Space Alert");
