@@ -1,6 +1,6 @@
 ﻿
 <div class="jumbotron" style="margin:auto; text-align:center">
-    <h1>Closed Space Analysis Console</h1>
+    <h1>@ViewBag.selectedView Detection Console</h1>
 
 </div>
 <div style="margin:auto; text-align:center;min-height: 40px">
@@ -21,9 +21,8 @@
 <div>
     <h1 id="test-h1"></h1>
 </div>
+<div id="meta_data" url="@ViewBag.serverUrl" video_src="@ViewBag.videoSrc" selected_view="@ViewBag.selectedView" euclid_ip ="@ViewBag.euclidIP", euclid_port="@ViewBag.euclidPort"></div>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/utils.js"></script>
-
-
 
 

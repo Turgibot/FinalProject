@@ -16,7 +16,7 @@ namespace CSA_Project.Models
         [NotMapped]
         public List<string> types = new List<string>()
         {   "People",
-            "Drawsiness",
+            "Drowsiness",
             "Panic"
         };
 

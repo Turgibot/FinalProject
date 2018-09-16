@@ -1,11 +1,16 @@
+#todo get all the parameters including image url from cmd line
+
 # import the necessary packages
+
 import numpy as np
 import argparse
 import cv2
 import urllib.request as urlreq
 import requests
+import json
 
 url = 'http://192.168.1.100:8080/snapshot?topic=/camera/color/image_raw'
+server_url ='http://localhost:53983/api/DetectPeoples'
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 #ap.add_argument("-i", "--image", required=True,
@@ -18,7 +23,7 @@ ap.add_argument("-c", "--confidence", type=float, default=0.2,
                 help="minimum probability to filter weak detections")
 args = vars(ap.parse_args())
 
-cap = cv2.VideoCapture("http://192.168.1.100:8080/stream?topic=/camera/color/image_raw")
+
 # initialize the list of class labels MobileNet SSD was trained to
 # detect, then generate a set of bounding box colors for each class
 CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow",
@@ -34,19 +39,22 @@ net = cv2.dnn.readNetFromCaffe(args["prototxt"], args["model"])
 # (note: normalization is done via the authors of the MobileNet SSD
 # implementation)
 while True:
+    #save and count all detections
+    person_count = 0
+    boxes = ""
+    #TODO check for responce success
+    #get a single image at a time
     resp = urlreq.urlopen(url)
     image = np.asarray(bytearray(resp.read()), dtype='uint8')
     image = cv2.imdecode(image, cv2.IMREAD_COLOR)
-    #image = cv2.imread(args["image"])
-    #success, image = cap.read()
-
+    
     original_shape = image.shape
     (h, w) = image.shape[:2]
     blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 0.007843, (300, 300), 127.5)
 
     # pass the blob through the network and obtain the detections and
     # predictions
-    # print("[INFO] computing object detections...")
+
     net.setInput(blob)
     detections = net.forward()
 
@@ -65,23 +73,35 @@ while True:
             idx = int(detections[0, 0, i, 1])
             if CLASSES[idx] is not 'person':
                 continue
+            
             box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
             (startX, startY, endX, endY) = box.astype("int")
-
+            box_str = '{}:{}:{}:{}'.format(startX, startY, endX, endY)
             # display the prediction
-            label = "id: {} --- {}: {:.2f}%".format(idx, CLASSES[idx], confidence * 100)
-            print("[INFO] {}".format(label))
-            cv2.rectangle(image, (startX, startY), (endX, endY),
-                          COLORS[idx], 2)
-            y = startY - 15 if startY - 15 > 15 else startY + 15
-            cv2.putText(image, label, (startX, y),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
-    #show the output image
-    cv2.resize(image, original_shape[:2])
-    cv2.imshow("Output", image)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-cap.release()
+            # label = "{}: {:.2f}%".format(CLASSES[idx], confidence * 100)
+            # print("[INFO] {}".format(label))
+            accuracy = '{:.2f}'.format(confidence * 100)
+            
+
+            #draw rectangle for debugging
+
+            #cv2.rectangle(image, (startX, startY), (endX, endY),
+            #              COLORS[idx], 2)
+            #y = startY - 15 if startY - 15 > 15 else startY + 15
+            #cv2.putText(image, label, (startX, y),
+            #            cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
+
+            person_count += 1
+            boxes += accuracy +':'+ box_str + '%%%'
+    #send a post request of detections and empty list
+   
+    r = requests.post(server_url, data = {"NumberOfPeople":person_count,"ValuesString":boxes})
+
+
+    #show the output image for debugging
+
+    #cv2.resize(image, original_shape[:2])
+    #cv2.imshow("Output", image)
+    #if cv2.waitKey(1) & 0xFF == ord('q'):
+    #    break
 cv2.destroyAllWindows()
-
-

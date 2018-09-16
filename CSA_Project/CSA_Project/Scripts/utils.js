@@ -9,10 +9,92 @@ var alert_element = document.getElementById('alert_msg');
 var num_detections = 0;
 var boxes = [];
 var new_data = true;
-new_img.setAttribute('id', 'streamer');
-new_img.setAttribute('src', 'http://192.168.1.100:8080/stream?topic=/camera/color/image_raw');
+var video_src = "";
+var server_url = "";
+var selected_view = "";
+var euclid_ip = "";
+var euclid_port = "";
+var prev_id = 0;
+var isDirty = false;
+var delta = 0;
+var prev_delta = 0;
 
-var itrvl = setInterval(function () {
+new_img.setAttribute('id', 'streamer');
+
+
+$(document).ready(function () {
+
+    var data_element = $('#meta_data');
+    selected_view = data_element.attr('selected_view');
+    server_url = data_element.attr('url');
+    video_src = data_element.attr('video_src');
+    euclid_ip = data_element.attr('euclid_ip');
+    euclid_port = data_element.attr('euclid_port');
+    post_to_euclid(selected_view, server_url, euclid_ip, euclid_port);
+
+    new_img.setAttribute('src', "http://" + video_src);
+
+    switch (selected_view) {
+        case "Person":
+            //ajax get detection information from DB
+            var get_people_itrvl = setInterval(getPeople, 250);
+            var draw_rect_itrvl = setInterval(drawRect, 33);
+            break;
+        case "Drowsiness":
+
+            break;
+        case "Panic":
+
+            break;
+    }
+    var get_people_itrvl = setInterval(getPeople, 250);
+    var draw_rect_itrvl = setInterval(drawRect, 33)
+   
+
+
+})
+var logAlert = function (delta, code, msg) {
+
+    $.post("http://localhost:53983/api/Logger", {
+        Email: email,
+        DateTime: new Date().toISOString(),
+        Code: code,
+        Key: "Delta",
+        Value: delta,
+        Message: msg
+    });
+
+}
+
+var getPeople = function () {
+
+    $.get("http://localhost:53983/api/GetLastDetection", function (data) {
+        if (data.id != prev_id) {
+            delta = data.numberOfPeople - max_people;
+            prev_id = data.id;
+            num_detections = data.numberOfPeople;
+            num_people.innerHTML = num_detections;
+            if (delta > 0) {
+                alert_element.innerText = alert_txt + delta;
+            } else {
+                alert_element.innerText = "";
+            }
+            boxes = data.boxesValue;
+
+        }
+        if (delta != prev_delta) {
+            prev_delta = delta;
+            if (delta <= 0)
+                logAlert(delta, 600, "Over Populated System Idle");
+            else
+                logAlert(delta, 601, "Over Populated Space Alert");
+        }
+    })
+}
+
+
+
+var drawRect = function () {
     ctx.drawImage(new_img, 0, 0);
     ctx.beginPath();
     ctx.lineWidth = 4;
@@ -26,52 +108,14 @@ var itrvl = setInterval(function () {
     }
     ctx.stroke();
 
-}, 33)
-
-$(document).ready(function () {
-    var prev_id = 0;
-    var isDirty = false;
-    var delta = 0;
-    var prev_delta = 0;
-    //ajax get detection information from DB
-    var get_itrvl = setInterval(function () {
-
-        $.get("http://localhost:53983/api/GetLastDetection", function (data) {
-            if (data.id != prev_id) {
-                delta = data.numberOfPeople - max_people;
-                prev_id = data.id;
-                num_detections = data.numberOfPeople;
-                num_people.innerHTML = num_detections;
-                if (delta > 0) {
-                    alert_element.innerText = alert_txt + delta;
-                } else {
-                    alert_element.innerText = "";
-                }
-                boxes = data.boxesValue;
-
-            }
-            if (delta != prev_delta) {
-                prev_delta = delta;
-                if (delta <= 0)
-                    logAlert(delta, 600, "System Idle");
-                else
-                    logAlert(delta, 601, "Over Populated Space Alert");
-            }
+}
 
 
-        })
-    }, 100)
+var post_to_euclid = function (selected_view, server_url, euclid_ip, euclid_port) {
 
-})
-var logAlert = function (delta, code, msg) {
-
-    $.post("http://localhost:53983/api/Logger", {
-        Email: email,
-        DateTime: new Date().toISOString(),
-        Code: code,
-        Key: "Delta",
-        Value: delta,
-        Message: msg
+    $.post("http://" + euclid_ip + ":" + euclid_port, {
+        SelectedView: selected_view,
+        ServerUrl: server_url
     });
 
 }

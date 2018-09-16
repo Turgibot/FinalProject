@@ -61,7 +61,6 @@ namespace CSA_Project.Models
 
 
 
-
     }
     public class AlertsModel
     {
