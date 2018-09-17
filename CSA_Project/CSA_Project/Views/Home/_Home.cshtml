@@ -7,8 +7,8 @@
     <span id="alert_msg" style="font-size:20px;line-height:2; color:red"></span>
 </div>
 
-<div style="width:360px; height:280px ; background-color:goldenrod; margin:auto; text-align:center">
-    <canvas id="mycanvas" width="320" height="240" style="border:1px solid black; margin-top:20px"></canvas>
+<div style="width:680px; height:520px ; background-color:goldenrod; margin:auto; text-align:center">
+    <canvas id="mycanvas" width="640" height="480" style="border:1px solid black; margin-top:20px"></canvas>
 </div>
 <div id="status_msg"  style="margin:auto; text-align:center; font-size:35px">
     <span> current number of people is </span>
@@ -21,10 +21,6 @@
 <div>
     <h1 id="test-h1"></h1>
 </div>
-
-<audio id="alarm" controls="controls" style="display: none;">
-    <source src="~/Sounds/alarm.wav"/>
-</audio>
 
 <div id="meta_data" url="@ViewBag.serverUrl" video_src="@ViewBag.cameraSrc" selected_view="@ViewBag.selectedView" euclid_ip="@ViewBag.euclidIP" euclid_port="@ViewBag.euclidPort" people_src="@ViewBag.PeopleSrc" drowsiness_src="@ViewBag.DrowsinessSrc" panic_src="@ViewBag.PanicSrc"></div>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

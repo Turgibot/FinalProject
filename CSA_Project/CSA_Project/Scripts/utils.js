@@ -18,7 +18,7 @@ var drowsiness_src = data_element.attr('drowsiness_src');
 var panic_src = data_element.attr('panic_src');
 var euclid_ip = data_element.attr('euclid_ip');
 var euclid_port = data_element.attr('euclid_port');
-var audio = document.getElementById('alarm');
+var audio = new Audio();
 var num_detections = 0;
 var boxes = [];
 var new_data = true;
@@ -33,8 +33,10 @@ var alertStatus = false;
 
 $(document).ready(function () {
 
-   
-
+    audio.src = 'Sounds/alarm.wav';
+    audio.loop = true;
+    audio.autoplay = true;
+    audio.muted = true;
     post_to_euclid(selected_view, server_url, euclid_ip, euclid_port);
     
     switch (selected_view) {
@@ -48,7 +50,7 @@ $(document).ready(function () {
             status_msg_element.innerText = "";
             new_img.setAttribute('src', drowsiness_src);
             var show_drowsiness_itrvl = setInterval(showDrowsinessStream, 33);
-            var get_drowsiness_itrvl = setInterval(getDrowsiness, 100);
+            var get_drowsiness_itrvl = setInterval(getDrowsiness, 250);
             break;
         case "Panic":
             status_msg_element.innerText = "";
@@ -105,15 +107,16 @@ var getDrowsiness = function () {
             if (alertStatus == false) {
                 flicker(true);
                 alertStatus = true;
+                audio.muted = false;
+                status_msg_element.innerText = "WAKE UP!!!";
+                alert_element.innerText = "HEY!!!!";
             }
-            audio.play();
-            status_msg_element.innerText = "WAKE UP!!!";
-            alert_element.innerText = "HEY!!!!";
 
         } else {
-            alert_element.innerText = "";
-            status_msg_element.innerText = "";
             if (alertStatus == true) {
+                alert_element.innerText = "";
+                status_msg_element.innerText = "";
+                audio.muted = true;
                 flicker(false);
                 alertStatus = false;
             }
@@ -124,7 +127,7 @@ var getDrowsiness = function () {
 }
 
 var drawRect = function () {
-    ctx.drawImage(new_img, 0, 0);
+    ctx.drawImage(new_img, 0, 0, 640, 480);
     ctx.beginPath();
     ctx.lineWidth = 4;
     ctx.strokeStyle = 'red';
@@ -140,7 +143,7 @@ var drawRect = function () {
 }
 
 var showDrowsinessStream = function () {
-    ctx.drawImage(new_img, 0, 0);
+    ctx.drawImage(new_img, 0, 0, 640, 480);
     ctx.beginPath();
     ctx.stroke();
 }
