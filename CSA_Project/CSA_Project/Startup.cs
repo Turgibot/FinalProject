@@ -50,15 +50,12 @@ namespace CSA_Project
                 settings.EuclidIP = (string)euclid["ip"];
                 settings.EuclidMAC = (string)euclid["mac"];
                 settings.EuclidPort = (string)euclid["stream_port"];
-                settings.Topic = (string)euclid["cam_topic"];
+                settings.CameraTopic = (string)euclid["cam_topic"];
 
                 settings.ServerIP = (string)server["ip"];
                 settings.ServerMAC = (string)server["mac"];
                 settings.ServerPort = (string)euclid["stream_port"];
-                settings.RecordingPath = (string)euclid["video_recording_path"];
-
-                settings.NN_Model = (string)net["model"];
-                settings.NN_Weights = (string)net["weights"];
+                
 
                 context.Settings.Add(settings);
                 await context.SaveChangesAsync();

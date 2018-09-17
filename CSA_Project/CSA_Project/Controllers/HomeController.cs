@@ -16,7 +16,7 @@ namespace CSA_Project.Controllers
             var setting = DB.Settings.FirstOrDefault();
             var selector = DB.SelectorModels.FirstOrDefault();
             string host = setting.ServerIP;
-            string video_src = setting.EuclidIP + ":8080" + setting.Topic;
+            string video_src = setting.EuclidIP + ":8080" + setting.CameraTopic;
             string server_url = setting.ServerIP;
             string selected_view = selector.SelectedValue;
             string euclid_ip = setting.EuclidIP;

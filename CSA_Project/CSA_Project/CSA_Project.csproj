@@ -284,6 +284,7 @@
     <Compile Include="Controllers\MeController.cs" />
     <Compile Include="Controllers\SelectorModelsController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Controllers\_SettingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -411,6 +412,10 @@
     <Compile Include="Migrations\201809170732007_Drowsiness.Designer.cs">
       <DependentUpon>201809170732007_Drowsiness.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809170810358_ReviewSettings.cs" />
+    <Compile Include="Migrations\201809170810358_ReviewSettings.Designer.cs">
+      <DependentUpon>201809170810358_ReviewSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DetectDrowsiness.cs" />
@@ -534,16 +539,21 @@
     <Content Include="Views\SelectorModels\Details.cshtml" />
     <Content Include="Views\SelectorModels\Edit.cshtml" />
     <Content Include="Views\SelectorModels\Index.cshtml" />
-    <Content Include="Views\Settings\Create.cshtml" />
-    <Content Include="Views\Settings\Delete.cshtml" />
-    <Content Include="Views\Settings\Details.cshtml" />
-    <Content Include="Views\Settings\Edit.cshtml" />
-    <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\_Settings\Create.cshtml" />
+    <Content Include="Views\_Settings\Delete.cshtml" />
+    <Content Include="Views\_Settings\Details.cshtml" />
+    <Content Include="Views\_Settings\Edit.cshtml" />
+    <Content Include="Views\_Settings\Index.cshtml" />
     <Content Include="Views\LoggerModels\Create.cshtml" />
     <Content Include="Views\LoggerModels\Delete.cshtml" />
     <Content Include="Views\LoggerModels\Details.cshtml" />
     <Content Include="Views\LoggerModels\Edit.cshtml" />
     <Content Include="Views\LoggerModels\Index.cshtml" />
+    <Content Include="Views\Settings\Create.cshtml" />
+    <Content Include="Views\Settings\Delete.cshtml" />
+    <Content Include="Views\Settings\Details.cshtml" />
+    <Content Include="Views\Settings\Edit.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -653,6 +663,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809170732007_Drowsiness.resx">
       <DependentUpon>201809170732007_Drowsiness.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809170810358_ReviewSettings.resx">
+      <DependentUpon>201809170810358_ReviewSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

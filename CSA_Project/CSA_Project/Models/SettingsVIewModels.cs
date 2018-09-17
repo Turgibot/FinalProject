@@ -22,11 +22,20 @@ namespace CSA_Project.Models
         [DisplayName("Euclid MAC")]
         public string EuclidMAC { get; set; }
 
-        [DisplayName("Euclid Port number")]
+        [DisplayName("Euclid HTTP Server Port number")]
         public string EuclidPort { get; set; }
 
         [DisplayName("Euclid Camera Topic")]
-        public string Topic { get; set; }
+        public string CameraTopic { get; set; }
+
+        [DisplayName("Euclid People Detection Topic")]
+        public string PeopleTopic { get; set; }
+
+        [DisplayName("Euclid Drowsiness Detection Topic")]
+        public string DrowsinessTopic { get; set; }
+
+        [DisplayName("Euclid Panic Detection Topic")]
+        public string PanicTopic { get; set; }
 
         [DisplayName("Server IP")]
         public string ServerIP { get; set; }
@@ -36,31 +45,12 @@ namespace CSA_Project.Models
 
         [DisplayName("Server Port number")]
         public string ServerPort { get; set; }
-
-        [DisplayName("Server video target folder")]
-        public string RecordingPath { get; set; }
-
-        [DisplayName("Streamer script")]
-        public string Streamer { get; set; }
-
-        [DisplayName("Python2.7")]
-        public string Python27 { get; set; }
-
-        [DisplayName("Python3.4")]
-        public string Python34 { get; set; }
-
+        
         [DisplayName("Db Name")]
         public string DB_Name { get; set; }
         [DisplayName("DB Connection String")]
         public string ConnectionString { get; set; }
-
-        [DisplayName("Neural Network Model")]
-        public string NN_Model { get; set; }
-        [DisplayName("Neural Network_Weights")]
-        public string NN_Weights { get; set; }
-
-
-
+        
     }
     public class AlertsModel
     {
