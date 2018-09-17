@@ -284,7 +284,6 @@
     <Compile Include="Controllers\MeController.cs" />
     <Compile Include="Controllers\SelectorModelsController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
-    <Compile Include="Controllers\_SettingsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -497,6 +496,8 @@
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Scripts\utils.js" />
+    <Content Include="Sounds\alarm.wav" />
+    <Content Include="Sounds\short_alarm.wav" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -539,11 +540,6 @@
     <Content Include="Views\SelectorModels\Details.cshtml" />
     <Content Include="Views\SelectorModels\Edit.cshtml" />
     <Content Include="Views\SelectorModels\Index.cshtml" />
-    <Content Include="Views\_Settings\Create.cshtml" />
-    <Content Include="Views\_Settings\Delete.cshtml" />
-    <Content Include="Views\_Settings\Details.cshtml" />
-    <Content Include="Views\_Settings\Edit.cshtml" />
-    <Content Include="Views\_Settings\Index.cshtml" />
     <Content Include="Views\LoggerModels\Create.cshtml" />
     <Content Include="Views\LoggerModels\Delete.cshtml" />
     <Content Include="Views\LoggerModels\Details.cshtml" />
