@@ -33,9 +33,11 @@ $(document).ready(function () {
     post_to_euclid(selected_view, server_url, euclid_ip, euclid_port);
 
     new_img.setAttribute('src', "http://" + video_src);
+    new_img.setAttribute('width', "640px");
+    new_img.setAttribute('height', "480px");
 
     switch (selected_view) {
-        case "Person":
+        case "People":
             //ajax get detection information from DB
             var get_people_itrvl = setInterval(getPeople, 250);
             var draw_rect_itrvl = setInterval(drawRect, 33);
@@ -47,8 +49,7 @@ $(document).ready(function () {
 
             break;
     }
-    var get_people_itrvl = setInterval(getPeople, 250);
-    var draw_rect_itrvl = setInterval(drawRect, 33)
+
    
 
 
