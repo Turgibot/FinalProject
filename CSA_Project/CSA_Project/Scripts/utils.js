@@ -131,12 +131,12 @@ var drawRect = function () {
     ctx.beginPath();
     ctx.lineWidth = 4;
     ctx.strokeStyle = 'red';
-    ctx.font = '14px Arial';
+    ctx.font = '18px Arial';
     ctx.fillStyle = 'aqua';
     for (var i = 0; i < boxes.length > 0; i++) {
         values = boxes[i].split(':');
-        ctx.rect(values[1], values[2], values[3], values[4]);
-        ctx.fillText("Person " + values[0] + "%", parseInt(values[1]) + 10, parseInt(values[2]) + 15);
+        ctx.rect(values[1] * 2, values[2] * 2, values[3] * 2, values[4] * 2);
+        ctx.fillText("Person " + values[0] + "%", parseInt(values[1]) * 2 + 10, parseInt(values[2]) * 2 + 30);
     }
     ctx.stroke();
 
