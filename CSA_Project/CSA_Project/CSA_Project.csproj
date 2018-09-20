@@ -275,6 +275,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlertsModelsController.cs" />
     <Compile Include="Controllers\DetectDrowsinessesController.cs" />
+    <Compile Include="Controllers\DetectPanicsController.cs" />
     <Compile Include="Controllers\DetectPeoplesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoggerController.cs" />
@@ -415,9 +416,14 @@
     <Compile Include="Migrations\201809170810358_ReviewSettings.Designer.cs">
       <DependentUpon>201809170810358_ReviewSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809201008372_AddDetectPanic.cs" />
+    <Compile Include="Migrations\201809201008372_AddDetectPanic.Designer.cs">
+      <DependentUpon>201809201008372_AddDetectPanic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DetectDrowsiness.cs" />
+    <Compile Include="Models\DetectPanic.cs" />
     <Compile Include="Models\DetectPeople.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LoggerModel.cs" />
@@ -662,6 +668,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809170810358_ReviewSettings.resx">
       <DependentUpon>201809170810358_ReviewSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809201008372_AddDetectPanic.resx">
+      <DependentUpon>201809201008372_AddDetectPanic.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

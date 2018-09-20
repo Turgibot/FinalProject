@@ -50,11 +50,13 @@ $(document).ready(function () {
             status_msg_element.innerText = "";
             new_img.setAttribute('src', drowsiness_src);
             var show_drowsiness_itrvl = setInterval(showDrowsinessStream, 33);
-            var get_drowsiness_itrvl = setInterval(getDrowsiness, 250);
+            var get_drowsiness_itrvl = setInterval(getDrowsiness, 100);
             break;
         case "Panic":
             status_msg_element.innerText = "";
             new_img.setAttribute('src', panic_src);
+            //var get_panic_itrvl = setInterval(getPanic, 250);
+            var draw_rect_itrv2 = setInterval(drawRect, 33);
             break;
     }
 
@@ -101,6 +103,35 @@ var getPeople = function () {
     })
 }
 
+
+var getPanic= function () {
+
+    $.get("http://localhost:53983/api/GetLastPanic", function (data) {
+        if (data.id != prev_id) {
+            prev_id = data.id;
+
+            isPistol = data.IsPistol;
+            num_people.innerHTML = num_detections;
+            if (isPistol==true) {
+                alert_element.innerText = alert_txt;
+                //flicker(true);
+            } else {
+                alert_element.innerText = "";
+                //flicker(false);
+            }
+            boxes = data.boxesValue;
+
+        }
+        //if (delta != prev_delta) {
+        //    prev_delta = delta;
+        //    if (delta <= 0)
+        //        logAlert(delta, 600, "Over Populated System Idle");
+        //    else
+        //        logAlert(delta, 601, "Over Populated Space Alert");
+        //}
+    })
+}
+
 var getDrowsiness = function () {
     $.get("http://localhost:53983/api/GetLastDrowsiness", function (data) {
         if (data.isAwake == false) {
@@ -136,7 +167,7 @@ var drawRect = function () {
     for (var i = 0; i < boxes.length > 0; i++) {
         values = boxes[i].split(':');
         ctx.rect(values[1] * 2, values[2] * 2, values[3] * 2, values[4] * 2);
-        ctx.fillText("Person " + values[0] + "%", parseInt(values[1]) * 2 + 10, parseInt(values[2]) * 2 + 30);
+        ctx.fillText(selected_view+" " + values[0] + "%", parseInt(values[1]) * 2 + 10, parseInt(values[2]) * 2 + 30);
     }
     ctx.stroke();
 
