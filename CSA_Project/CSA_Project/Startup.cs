@@ -20,6 +20,7 @@ namespace CSA_Project
         {
             ConfigureAuth(app);
             AppInisialSetupAsync();
+            app.MapSignalR();
         }
 
         private async void AppInisialSetupAsync()

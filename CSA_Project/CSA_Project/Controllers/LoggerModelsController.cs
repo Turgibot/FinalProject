@@ -18,7 +18,7 @@ namespace CSA_Project.Controllers
         // GET: LoggerModels
         public async Task<ActionResult> Index()
         {
-            return View(await db.LoggerModels.ToListAsync());
+            return View(await db.LoggerModels.OrderByDescending(x=> x.Id).ToListAsync());
         }
 
         // GET: LoggerModels/Details/5

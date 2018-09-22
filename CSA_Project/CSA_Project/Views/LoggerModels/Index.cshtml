@@ -33,9 +33,7 @@
 @foreach (var item in Model) {
 
     <tr>
-        @if (User.Identity.Name != item.Email) {
-            continue;
-        }
+       
         <td>
             @Html.DisplayFor(modelItem => item.DateTime)
         </td>

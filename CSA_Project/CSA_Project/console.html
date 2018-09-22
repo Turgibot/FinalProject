@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Closed Space Analyzer</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <script src="Scripts/modernizr-2.6.2.js"></script>
+    <script src="Scripts/jquery-1.10.2.min.js" "></script>
+    <script src="/Scripts/jquery.signalR-2.0.1.js"></script>
+    <script src="/signalr/hubs"></script>
+
+
+    <style type="text/css">
+        .oldcontainer {
+            background-color: #99CCFF;
+            border: thick solid #808080;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <ul>
+                    <li>
+                        <a class="navbar-brand" href="/">Closed Space Analyzer</a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li><a href="/Settings">Settings</a></li>
+                    <li><a href="/Help">API</a></li>
+                    <li><a href="console.html">Console</a></li>
+                    <li><a href="SelectorModels">Viewer Selection</a></li>
+                    <li><a href="/">Old Console</a></li>
+                    <li><a href="/LoggerModels">Logs</a></li>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/Manage" title="Manage">Hello Admin Adminovitch!</a>
+                    </li>
+                    <li><a href="javascript">Log off</a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div id="app-body" class="container body-content">
+
+
+        <div id="title" class="jumbotron" style="margin:auto; text-align:center">
+            <h1><span id="selected_view"></span> Detection Console</h1>
+
+        </div>
+        <div style="margin:auto; text-align:center;min-height: 40px">
+            <span id="alert_msg" style="font-size:20px;line-height:2; color:red"></span>
+        </div>
+
+        <div style="width:680px; height:520px ; background-color:goldenrod; margin:auto; text-align:center">
+            <canvas id="mycanvas" width="640" height="480" style="border:1px solid black; margin-top:20px"></canvas>
+        </div>
+        <div id="status_msg" style="margin:auto; text-align:center; font-size:35px">
+            <span> current number of people is </span>
+            <span id="num_people">%%%</span>
+            <span>out of </span>
+            <span id="max_people"></span>
+            <span>allowed</span>
+        </div>
+
+
+
+
+
+        <!--<div class="oldcontainer">
+            <input type="text" id="message" />
+            <input type="button" id="sendmessage" value="Send" />
+            <input type="hidden" id="displayname" />
+            <ul id="discussion"></ul>
+        </div>-->
+        <!--Add script to update the page and send messages.-->
+
+
+        <footer>
+            <p>&copy; Closed Space Analyzer</p>
+        </footer>
+    </div>
+    <script src="Scripts/utils.js"></script>
+    <script src="Scripts/streamer.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -41,7 +41,7 @@ namespace CSA_Project.Models
         [DisplayName("Value")]
         public String Value { get; set; }
 
-        [DisplayName("User Email")]
+        [DisplayName("User")]
         public String Email { get; set; }
     }
 }

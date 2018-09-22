@@ -12,12 +12,11 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Closed Space Analyzer", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <ul>
+                    <li>
+                        <a class="navbar-brand" href="console.html">Closed Space Analyzer</a>
+                    </li>
+                </ul>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -27,13 +26,12 @@
                         {
                             <li>@Html.ActionLink("Settings", "Index", "Settings", new { area = "" }, null)</li>
                             <li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>
+                            <li><a href="console.html">Console</a></li>
                         }
                         <li>@Html.ActionLink("Viewer Selection", "Index", "SelectorModels", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("Console", "Index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("Old Console", "Index", "Home", new { area = "" }, null)</li>
                         <li>@Html.ActionLink("Logs", "Index", "LoggerModels", new { area = "" }, null)</li>
                     }
-
-
 
                 </ul>
                 @Html.Partial("_LoginPartial")

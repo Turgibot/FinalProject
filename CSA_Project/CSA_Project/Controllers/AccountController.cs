@@ -54,7 +54,13 @@ namespace CSA_Project.Controllers
                 _userManager = value;
             }
         }
-
+        private void SetCookie( string key, string value)
+        {
+            HttpCookie Cookie = new HttpCookie(key);
+            Cookie.Value = value;
+            Cookie.Expires = DateTime.Now.AddHours(24);
+            Response.SetCookie(Cookie);
+        }
         // The Authorize Action is the end point which gets called when you access any
         // protected Web API. If the user is not logged in then they will be redirected to 
         // the Login page. After a successful login you can call a Web API.
@@ -97,15 +103,25 @@ namespace CSA_Project.Controllers
                     var user = context.Users.Where(b => b.Email == model.Email).FirstOrDefault();
                     var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                     var s = UserManager.GetRoles(user.Id);
-                    if (s[0].ToString() == "Admin")
+
+                    SetCookie("UserName", user.FirstName + " " + user.LastName);
+                    SetCookie("UserRoll", s[0].ToString());
+                    Response.Flush();
+
+                    if (!Response.IsRequestBeingRedirected)
                     {
-                        return RedirectToAction("Index","Settings");
+
+                        if (s[0].ToString() == "Admin")
+                        {
+
+                            return RedirectToAction("Index", "Settings");
+                        }
+                        else
+                        {
+                            return RedirectToLocal(returnUrl);
+                        }
                     }
-                    else
-                    {
-                        return RedirectToLocal(returnUrl);
-                    }
-                    
+                    return null;
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

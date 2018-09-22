@@ -10,12 +10,16 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using CSA_Project.Models;
+using Microsoft.AspNet.SignalR;
 
 namespace CSA_Project.Controllers
 {
     public class DetectPeoplesController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        
+
+
 
         // GET: api/DetectPeoples
         public IQueryable<DetectPeople> GetDetectPeoples()
@@ -96,6 +100,8 @@ namespace CSA_Project.Controllers
                 return BadRequest(ModelState);
             }
 
+            var hub = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
+            hub.Clients.All.broadcastMessage("People", detectPeople.NumberOfPeople, detectPeople.BoxesValue);
             db.DetectPeoples.Add(detectPeople);
             await db.SaveChangesAsync();
 
