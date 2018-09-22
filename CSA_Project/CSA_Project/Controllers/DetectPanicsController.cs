@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using CSA_Project.Models;
+using Microsoft.AspNet.SignalR;
 
 namespace CSA_Project.Controllers
 {
@@ -93,6 +94,8 @@ namespace CSA_Project.Controllers
             {
                 return BadRequest(ModelState);
             }
+            var hub = GlobalHost.ConnectionManager.GetHubContext<MyHub>();
+            hub.Clients.All.broadcastMessage("Panic", detectPanic.IsPistol, detectPanic.BoxesValue);
 
             db.DetectPanics.Add(detectPanic);
             await db.SaveChangesAsync();

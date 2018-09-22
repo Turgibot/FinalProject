@@ -19,8 +19,9 @@ namespace CSA_Project.Models
     501 Not Implemented
     502 Bad Gateway
     503 Service Unavailable
-    600 All Good
+    600 System Idle
     601 OverPopulation Alert
+    602 Drowsiness Alert
     */
         [Key]
         public long Id { get; set; }

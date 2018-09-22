@@ -104,9 +104,6 @@ namespace CSA_Project.Controllers
                     var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                     var s = UserManager.GetRoles(user.Id);
 
-                    SetCookie("UserName", user.FirstName + " " + user.LastName);
-                    SetCookie("UserRoll", s[0].ToString());
-                    Response.Flush();
 
                     if (!Response.IsRequestBeingRedirected)
                     {

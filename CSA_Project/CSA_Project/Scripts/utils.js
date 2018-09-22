@@ -21,12 +21,15 @@ var euclid_port = "";
 
 var show_stream_itrvl = null;
 var draw_rect_itrvl = null;
+var get_drowsiness_itrvl = null;
+var get_panic_itrvl = null;
 var audio = new Audio();
 var num_detections = 0;
 var boxes = [];
 var incomingData = false;
 var prev_id = 0;
 var isDirty = false;
+var prev_isAwake = false;
 var delta = 0;
 var prev_delta = 0;
 var flick = null;
@@ -45,21 +48,21 @@ $(document).ready(function () {
     audio.autoplay = true;
     audio.muted = true;
 })
-var logAlert = function (delta, code, msg) {
+var logAlert = function (key, value, code, msg) {
 
     $.post("http://localhost:53983/api/Logger", {
         Email: userName,
         DateTime: new Date().toISOString(),
         Code: code,
-        Key: "Delta",
-        Value: delta,
+        Key: key,
+        Value: value,
         Message: msg
     });
 
 }
 
-var receivePeopleData = function (numberOfPeople, boxesValue) {
-    incomingData = true;
+var handlePeopleData = function (numberOfPeople, boxesValue) {
+
     delta = numberOfPeople - max_people;
     num_people.innerHTML = numberOfPeople;
     if (delta > 0) {
@@ -73,58 +76,78 @@ var receivePeopleData = function (numberOfPeople, boxesValue) {
     if (delta !== prev_delta) {
         prev_delta = delta;
         if (delta <= 0)
-            logAlert(delta, 600, "Over Populated System Idle");
+            logAlert("Delta", delta, 600, "Over Populated System Idle");
         else
-            logAlert(delta, 601, "Over Populated Space Alert");
+            logAlert("Delta", delta, 601, "Over Populated Space Detected");
     }
 
 }
 
 
-var getPanic= function () {
+var handlePanicData = function (is_pistol, boxesValue) {
 
-    $.get("http://localhost:53983/api/GetLastPanic", function (data) {
-        if (data.id != prev_id) {
-            prev_id = data.id;
 
-            isPistol = data.IsPistol;
-            num_people.innerHTML = num_detections;
-            if (isPistol==true) {
-                alert_element.innerText = alert_txt;
-                //flicker(true);
-            } else {
-                alert_element.innerText = "";
-                //flicker(false);
-            }
-            boxes = data.boxesValue;
+    isPistol = is_pistol;
 
+    if (isPistol==true) {
+        if (alertStatus === false) {
+            flicker(true);
+            alertStatus = true;
+            audio.muted = false;
+            status_msg_element.innerText = "CALLING SPECIAL FORCES";
+            alert_element.innerText = "PISTOL FOUND";
         }
-    })
+
+    } else {
+        if (alertStatus === true) {
+            alert_element.innerText = "";
+            status_msg_element.innerText = "";
+            audio.muted = true;
+            flicker(false);
+            alertStatus = false;
+        }
+    }
+    boxes = boxesValue;
+
+    if (isPistol !== prev_isPistol) {
+        prev_isPistol = isPistol;
+        if (isPistol == false)
+            logAlert("Panic", false, 600, "Panic System Idle");
+        else
+            logAlert("Panic", true, 603, "Panic Condition Detected");
+    }
+
 }
 
-var getDrowsiness = function () {
-    $.get("http://localhost:53983/api/GetLastDrowsiness", function (data) {
-        if (data.isAwake == false) {
-            if (alertStatus == false) {
-                flicker(true);
-                alertStatus = true;
-                audio.muted = false;
-                status_msg_element.innerText = "WAKE UP!!!";
-                alert_element.innerText = "HEY!!!!";
-            }
+var handleDrowsinessData = function (isAwake) {
 
-        } else {
-            if (alertStatus == true) {
-                alert_element.innerText = "";
-                status_msg_element.innerText = "";
-                audio.muted = true;
-                flicker(false);
-                alertStatus = false;
-            }
-
-
+    if (isAwake == false) {
+        if (alertStatus === false) {
+            flicker(true);
+            alertStatus = true;
+            audio.muted = false;
+            status_msg_element.innerText = "WAKE UP!!!";
+            alert_element.innerText = "HEY!!!!";
         }
-    })
+
+    } else {
+        if (alertStatus === true) {
+            alert_element.innerText = "";
+            status_msg_element.innerText = "";
+            audio.muted = true;
+            flicker(false);
+            alertStatus = false;
+        }
+    }
+
+    if (isAwake !== prev_isAwake) {
+        prev_isAwake = isAwake;
+        if (isAwake == true)
+            logAlert("Drowsiness", false , 600, "Drowsiness System Idle");
+        else
+            logAlert("Drowsiness", true, 602, "Drowsiness Detected");
+    }
+
 }
 
 var drawRect = function () {
@@ -212,19 +235,17 @@ var run = function () {
             new_img.setAttribute('src', people_src);
             show_stream_itrvl = setInterval(showStream, 33);
             draw_rect_itrvl = setInterval(drawRect, 33);
-
-            //ajax get detection information from DB
-            //var get_people_itrvl = setInterval(getPeople, 250);
             break;
         case "Drowsiness":
             status_msg_element.innerText = "";
             new_img.setAttribute('src', drowsiness_src);
-            //var show_drowsiness_itrvl = setInterval(showDrowsinessStream, 33);
-            //var get_drowsiness_itrvl = setInterval(getDrowsiness, 100);
+            show_stream_itrvl = setInterval(showStream, 33);
             break;
         case "Panic":
             status_msg_element.innerText = "";
             new_img.setAttribute('src', panic_src);
+            show_stream_itrvl = setInterval(showStream, 33);
+            draw_rect_itrvl = setInterval(drawRect, 33);
             //var get_panic_itrvl = setInterval(getPanic, 250);
             //var draw_rect_itrv2 = setInterval(drawRect, 33);
             break;
@@ -232,6 +253,9 @@ var run = function () {
 }
 
 var showStream = function () {
+    if (incomingData == false) {
+        return;
+    }
     ctx.drawImage(new_img, 0, 0, 640, 480);
 }
 
